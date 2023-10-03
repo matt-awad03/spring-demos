@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -41,7 +40,7 @@ public class EmployeeController {
 				break;
 			}
         }
-        if (deletedEmp == null) {
+        if (deletedEmp == null) {  
             throw new UserNotExistException();
         }
         return deletedEmp;
@@ -58,8 +57,8 @@ public class EmployeeController {
 	}
 
     @GetMapping(value="/employees/{id}")
-    public Employee getEmployee(@RequestHeader("id-header-xyz") int empId, @PathVariable int id) throws UserNotExistException {
-        return employees.stream().filter(e -> e.getEmpId() == empId).findFirst().orElseThrow(() -> new UserNotExistException());
+    public Employee getEmployee(@PathVariable int id) throws UserNotExistException {
+        return employees.stream().filter(e -> e.getEmpId() == id).findFirst().orElseThrow(() -> new UserNotExistException());
     }
 
 }
