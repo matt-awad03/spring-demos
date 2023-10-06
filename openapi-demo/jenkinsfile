@@ -7,11 +7,13 @@ pipeline {
         stage('Build') {
             steps {
                 git 'https://github.com/matt-awad03/spring-demos.git'
+                cd openapi-demo
                 sh 'mvn package'
             }
         }
         stage('Test') {
             steps {
+                cd openapi-demo
                 sh 'mvn test'
             }
         }
