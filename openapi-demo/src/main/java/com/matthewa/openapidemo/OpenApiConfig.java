@@ -60,7 +60,7 @@ public class OpenApiConfig {
 
     @Bean
     public OpenApiCustomizer openApiCustomizer() {
-        return (openApi) -> {
+        return openApi -> {
             Info info = new Info();
             info.setTitle(StringUtils.capitalize(appName) + " API");
             info.setVersion(version.replace("'", ""));
